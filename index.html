@@ -3,81 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wanna be My GF?</title>
+    <title>Wanna Be My GF?</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: url('https://png.pngtree.com/thumb_back/fh260/background/20230208/pngtree-heart-background-in-orange-symbol-of-love-romantic-and-valentine-concept-image_1541546.jpg') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: white;
             font-family: Arial, sans-serif;
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20230208/pngtree-heart-background-in-orange-symbol-of-love-romantic-and-valentine-concept-image_1541546.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            theme-color: red; /* Tema merah */
         }
 
         .container {
             text-align: center;
-            background-color: rgba(255, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .gif {
-            width: 300px;
+            max-width: 90%;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.85); /* Box putih sedikit transparan */
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px); /* Efek blur untuk transparansi lebih halus */
             animation: slideUp 1s ease-out;
-        }
-
-        h1 {
-            margin: 20px 0;
-            animation: slideUp 1s ease-out;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            animation: slideUp 1s ease-out;
-        }
-
-        button:hover {
-            transform: scale(1.1);
-        }
-
-        #yes {
-            background-color: green;
-            color: white;
-        }
-
-        #no {
-            background-color: red;
-            color: white;
-        }
-
-        .popup {
-            display: none;
-            margin-top: 20px;
-            animation: popUp 0.5s ease-out;
-        }
-
-        .popup img {
-            width: 200px;
+            margin: 20px;
         }
 
         @keyframes slideUp {
             from {
-                transform: translateY(100px);
+                transform: translateY(100vh);
                 opacity: 0;
             }
             to {
@@ -86,78 +47,281 @@
             }
         }
 
+        .gif {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .question {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #ff1493; /* Merah muda untuk tema romantis */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: popUp 0.5s ease-out;
+        }
+
         @keyframes popUp {
-            from {
-                transform: scale(0.8);
+            0% {
+                transform: scale(0.5);
                 opacity: 0;
             }
-            to {
+            100% {
                 transform: scale(1);
                 opacity: 1;
             }
         }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            animation: popUp 0.5s ease-out;
+            color: white; /* Pastikan teks tombol putih untuk kontras dengan box */
+        }
+
+        .yes-btn {
+            background-color: #ff69b4; /* Pink merah */
+        }
+
+        .yes-btn:hover {
+            background-color: #ff1493;
+            transform: scale(1.05);
+        }
+
+        .no-btn {
+            background-color: #ff0000; /* Merah */
+            position: relative;
+        }
+
+        .no-btn:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+        }
+
+        /* Animasi pindah tombol No */
+        .no-btn.moved {
+            transform: translateX(50px) rotate(10deg);
+        }
+
+        .result {
+            font-size: 28px;
+            margin-top: 20px;
+            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: black; /* Ubah warna teks result ke hitam untuk kontras dengan box putih */
+        }
+
+        .success-text {
+            color: #00ff00; /* Hijau */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .fail-text {
+            color: #ff0000; /* Merah */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .success-img {
+            width: 200px;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Pop-up style */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            z-index: 1000;
+            display: none;
+            animation: popUp 0.3s ease-out;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        /* Responsif untuk mobile seperti Infinix Hot 40i Pro (layar ~6.6 inch, portrait) */
+        @media (max-width: 480px) {
+            .container {
+                max-width: 95%;
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .gif {
+                width: 150px;
+            }
+
+            .question {
+                font-size: 20px;
+                padding: 0 10px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+
+            button {
+                width: 200px;
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+
+            .no-btn.moved {
+                transform: translateY(20px) rotate(5deg); /* Sesuaikan untuk mobile */
+            }
+
+            .success-img {
+                width: 150px;
+            }
+
+            .result {
+                font-size: 24px;
+            }
+
+            .popup {
+                font-size: 18px;
+                padding: 15px;
+                width: 80%;
+            }
+        }
+
+        /* Opacity latar belakang kecil */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 0, 0, 0.1); /* Merah dengan opacity kecil */
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup"></div>
+
     <div class="container">
-        <img class="gif" src="https://i.pinimg.com/originals/54/65/7a/54657aa47803b57521691983811edd24.gif" alt="GIF">
-        <h1>Wanna be My GF?</h1>
+        <img src="https://i.pinimg.com/originals/54/65/7a/54657aa47803b57521691983811edd24.gif" alt="GIF" class="gif">
+        <div class="question">Wanna be My GF?</div>
         <div class="buttons">
-            <button id="yes">Yes</button>
-            <button id="no">No</button>
+            <button class="yes-btn" id="yesBtn">Yes</button>
+            <button class="no-btn" id="noBtn">No</button>
         </div>
-        <div class="popup" id="popup">
-            <p id="popup-text"></p>
-            <img id="popup-img" src="" alt="">
-        </div>
+        <div class="result" id="result"></div>
     </div>
 
     <script>
-        const yesButton = document.getElementById('yes');
-        const noButton = document.getElementById('no');
+        let noCount = 0;
+        const maxNo = 3;
+        const webhookUrl = 'https://discord.com/api/webhooks/1427196224338923570/ETaFeMZmVSwMtZrMBApj39kQwIVAOVH5hYFhNjLTCPU5W4gK7m1FLcB-6NinUcnk9IAr';
+
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const result = document.getElementById('result');
         const popup = document.getElementById('popup');
-        const popupText = document.getElementById('popup-text');
-        const popupImg = document.getElementById('popup-img');
+        const overlay = document.getElementById('overlay');
 
-        const discordWebhookUrl = 'https://discord.com/api/webhooks/1427196224338923570/ETaFeMZmVSwMtZrMBApj39kQwIVAOVH5hYFhNjLTCPU5W4gK7m1FLcB-6NinUcnk9IAr';
-
-        let noClickCount = 0;
-
-        yesButton.addEventListener('click', () => {
-            popupText.textContent = 'YATTAA!';
-            popupText.style.color = 'green';
-            popupImg.src = 'https://i.pinimg.com/736x/a8/8e/b4/a88eb4f339de1dcafdfad442123fa842.jpg';
+        // Fungsi untuk menampilkan pop-up
+        function showPopup(text) {
+            popup.textContent = text;
             popup.style.display = 'block';
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                popup.style.display = 'none';
+                overlay.style.display = 'none';
+            }, 2000);
+        }
 
-            // Send message to Discord webhook
-            fetch(discordWebhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ content: 'Jir Beneran DAPET DIA' })
-            });
+        // Fungsi untuk mengirim pesan ke Discord
+        async function sendToDiscord(message) {
+            try {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        content: message
+                    })
+                });
+            } catch (error) {
+                console.error('Error sending to Discord:', error);
+            }
+        }
+
+        yesBtn.addEventListener('click', () => {
+            result.innerHTML = '<div class="success-text">YATTAA</div><img src="https://i.pinimg.com/736x/a8/8e/b4/a88eb4f339de1dcafdfad442123fa842.jpg" alt="Success" class="success-img">';
+            sendToDiscord('Nice Dapet tuh');
+            // Sembunyikan tombol setelah yes
+            document.querySelector('.buttons').style.display = 'none';
         });
 
-        noButton.addEventListener('click', () => {
-            noClickCount++;
-            if (noClickCount === 1) {
-                alert('Ente yakin?');
-                noButton.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
-            } else if (noClickCount === 2) {
-                alert('Aku syedih nih :(');
-                noButton.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
-            } else if (noClickCount === 3) {
-                popupText.textContent = 'Yahhhh :(';
-                popupText.style.color = 'red';
-                popupImg.src = '';
-                popup.style.display = 'block';
+        noBtn.addEventListener('click', () => {
+            noCount++;
+            noBtn.classList.add('moved'); // Animasi pindah pertama kali
 
-                // Send message to Discord webhook
-                fetch(discordWebhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ content: 'AKWOKAOKWOKAOKW DI TOLAK, Jelek berarti lu Move on ege' })
-                });
+            if (noCount === 1) {
+                showPopup('ente yakin?');
+                // Reset posisi setelah animasi
+                setTimeout(() => noBtn.classList.remove('moved'), 300);
+            } else if (noCount === 2) {
+                showPopup('aku syedih nih');
+                // Pindah lagi
+                noBtn.style.transform = 'translateX(-50px) rotate(-10deg)';
+                setTimeout(() => noBtn.style.transform = '', 300);
+            } else if (noCount >= maxNo) {
+                result.innerHTML = '<div class="fail-text">Yahhhh:((</div>';
+                sendToDiscord('AKOWKOAKWOK ditolak Luh');
+                // Sembunyikan tombol setelah no ketiga
+                document.querySelector('.buttons').style.display = 'none';
             }
+        });
+
+        // Animasi pop-up saat tombol ditekan
+        [yesBtn, noBtn].forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.animation = 'popUp 0.2s ease-out';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.animation = '';
+            });
         });
     </script>
 </body>
